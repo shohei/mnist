@@ -76,6 +76,7 @@ disp 'comutation done';
         end    
     end
 
+    global count=0;
     function recreate_generator
         numerator = 0;
         denominator = 0;
@@ -85,8 +86,10 @@ disp 'comutation done';
                 denominator = denominator + gamma_nk(k,n);
             end
             uk(:,k) = numerator / denominator;
-            pk(k) = denominator/60000;
+            pk(k) = denominator/60000;            
         end                
+        count = count+1;
+        disp( sprintf( '** Epoch %d finished. **', k ) );
     end
 
 end
