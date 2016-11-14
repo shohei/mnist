@@ -16,9 +16,15 @@ global pk;
 init_pickup_probability();
 
 global gamma_nk;
-compute_generation_probability();
-recreate_generator();
+
+for idx=1:100
+    compute_generation_probability();
+    recreate_generator();
+end
+
 disp 'comutation done';
+
+save_result();
 
     function open_and_read_mnist
         fid=fopen('train-images-idx3-ubyte','r','b')
@@ -91,5 +97,10 @@ disp 'comutation done';
         count = count+1;
         disp( sprintf( '** Epoch %d finished. **', k ) );
     end
+
+    function save_result
+        save('',pk,uk);
+    end
+
 
 end
