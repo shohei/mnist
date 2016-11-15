@@ -1,12 +1,16 @@
 function do_classify
 
+clear all;
+close all;
+
+load('result.mat','pk','uk');
+
 global img;
 global img2;
 open_and_read_mnist();
 binarize();
 global img3;
 prepare_serialized_image();
-
 classify_image(img3(:,1));
 % classify_image(img3(:,2));
 % classify_image(img3(:,3));
@@ -49,7 +53,7 @@ disp 'stop here.';
             denominator = 0;
             denominator = denominator + pk(k)*puk(k);
             gamma_nk(k) = pk(k)*puk(k)/denominator;
-        end    
+        end            
         [maximum,index]=max(gamma_nk(:));
         disp( sprintf( 'input number classified as %d !', index ) );        
     end

@@ -16,8 +16,10 @@ global pk;
 init_pickup_probability();
 
 global gamma_nk;
+global count;
+count=0;
 
-for idx=1:100
+for idx=1:20
     compute_generation_probability();
     recreate_generator();
 end
@@ -82,7 +84,6 @@ save_result();
         end    
     end
 
-    global count=0;
     function recreate_generator
         numerator = 0;
         denominator = 0;
@@ -95,11 +96,11 @@ save_result();
             pk(k) = denominator/60000;            
         end                
         count = count+1;
-        disp( sprintf( '** Epoch %d finished. **', k ) );
+        disp( sprintf( '** Epoch %d finished. **', count ) );
     end
 
     function save_result
-        save('',pk,uk);
+        save('result.mat','pk','uk');
     end
 
 
